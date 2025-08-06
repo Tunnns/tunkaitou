@@ -51,8 +51,8 @@ class MainScene extends Phaser.Scene {
       if (this.p1State.isAttacking && !this.p1State.hasHit && !this.p2State.isBeingHit) {
         this.p1State.hasHit = true;
         this.handleHit("p2", "p1");
-        this.flashHitbox(this.p1AttackBox, 0x00ff00); // xanh lá khi đánh trúng
-        this.flashHitbox(this.p2BodyBox, 0xffff00);   // vàng khi bị đánh
+        this.flashHitbox(this.p1AttackBox, 0xff00ff); // tím khi đánh trúng
+        this.flashHitbox(this.p2BodyBox, 0xff0000);   // đỏ khi bị đánh
       }
     });
 
@@ -77,13 +77,13 @@ class MainScene extends Phaser.Scene {
     player.setCollideWorldBounds(true);
     this.physics.add.collider(player, ground);
 
-    // BodyBox: tím
-    const bodyBox = this.add.rectangle(0, 0, 60, 70, 0xff00ff, 0.5).setOrigin(0.5);
+    // BodyBox: xanh
+    const bodyBox = this.add.rectangle(0, 0, 60, 70, 0x00ff00, 0.5).setOrigin(0.5);
     this.physics.add.existing(bodyBox);
     bodyBox.body.allowGravity = false;
 
-    // AttackBox: đỏ
-    const attackBox = this.add.rectangle(0, 0, 80, 40, 0xff0000, 0.5).setOrigin(0.5);
+    // AttackBox: vàng
+    const attackBox = this.add.rectangle(0, 0, 80, 40, 0xffff00, 0.5).setOrigin(0.5);
     this.physics.add.existing(attackBox);
     attackBox.body.enable = false;
     attackBox.body.allowGravity = false;
@@ -176,7 +176,7 @@ class MainScene extends Phaser.Scene {
       // Update vị trí hitbox
       bodyBox.x = player.x;
       bodyBox.y = player.y + 25;
-      attackBox.x = player.x + (player.flipX ? -20 : 20);
+      attackBox.x = player.x + (player.flipX ? -10 : 10);
       attackBox.y = player.y + 10;
 
       if (state.isBeingHit || state.isDead || state.isKnockback) return;
