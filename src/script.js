@@ -1,5 +1,5 @@
 class MainScene extends Phaser.Scene {
-  preload() {
+  preload() { // Tải tài nguyên
     // Player 1
     this.load.spritesheet("p1_idle", "assets/player1/Idle.png", { frameWidth: 128, frameHeight: 128 });
     this.load.spritesheet("p1_walk", "assets/player1/Walk.png", { frameWidth: 128, frameHeight: 128 });
@@ -30,11 +30,15 @@ class MainScene extends Phaser.Scene {
     this.load.audio("p2_hurt", "assets/player2/sounds/hurt_2.mp3");
   }
 
-  create() {
+  create() { // Tạo scene
     const groundY = 464;
     this.add.graphics().fillStyle(0x444444, 1).fillRect(0, groundY, 800, 32);
     const ground = this.physics.add.staticGroup();
     ground.create(400, groundY + 16).setDisplaySize(800, 32).refreshBody();
+
+    // Hitbox mặc định ẩn
+    this.showHitbox = false;
+    this.toggleKey = this.input.keyboard.addKey('H');
 
     this.createAnimations("p1");
     this.createAnimations("p2");
@@ -42,10 +46,13 @@ class MainScene extends Phaser.Scene {
     this.createPlayer("p1", 300, ground);
     this.createPlayer("p2", 500, ground);
 
+    // Overlap xử lý đánh trúng
     this.physics.add.overlap(this.p1AttackBox, this.p2BodyBox, () => {
       if (this.p1State.isAttacking && !this.p1State.hasHit && !this.p2State.isBeingHit) {
         this.p1State.hasHit = true;
         this.handleHit("p2", "p1");
+        this.flashHitbox(this.p1AttackBox, 0x00ff00); // xanh lá khi đánh trúng
+        this.flashHitbox(this.p2BodyBox, 0xffff00);   // vàng khi bị đánh
       }
     });
 
@@ -53,69 +60,16 @@ class MainScene extends Phaser.Scene {
       if (this.p2State.isAttacking && !this.p2State.hasHit && !this.p1State.isBeingHit) {
         this.p2State.hasHit = true;
         this.handleHit("p1", "p2");
+        this.flashHitbox(this.p2AttackBox, 0x00ff00);
+        this.flashHitbox(this.p1BodyBox, 0xffff00);
       }
     });
   }
 
-  handleHit(targetKey, attackerKey) {
-    const target = this[targetKey];
-    const targetState = this[`${targetKey}State`];
-    const attacker = this[attackerKey];
-    const attackerState = this[`${attackerKey}State`];
-    const attackerStage = attackerState.currentAttackStage;
-
-    if (targetState.isBeingHit || targetState.isDead || targetState.isKnockback || !attackerStage) return;
-
-    target.setFlipX(target.x > attacker.x);
-    targetState.isBeingHit = true;
-
-    const sounds = this[`${targetKey}_sounds`];
-    sounds?.hurt?.play();
-
-    const expectedStage = (targetState.lastHitStage || 0) + 1;
-    if (attackerStage === expectedStage) {
-      targetState.comboHitCount = (targetState.comboHitCount || 1) + 1;
-    } else {
-      targetState.comboHitCount = 1;
-    }
-    targetState.lastHitStage = attackerStage;
-
-    const direction = target.x < attacker.x ? -1 : 1;
-
-    if (targetState.comboHitCount >= 4) {
-      target.setVelocityY(-400);
-      target.x += direction * 100;
-
-      const animKey = `${targetKey}_knock`;
-      if (this.anims.exists(animKey)) {
-        target.play(animKey, true);
-      }
-
-      targetState.comboHitCount = 0;
-      targetState.lastHitStage = 0;
-      targetState.isKnockback = true;
-
-      this.time.delayedCall(1000, () => {
-        targetState.isKnockback = false;
-        targetState.isBeingHit = false;
-      });
-
-    } else {
-      target.x += direction * 30;
-
-      if (targetState.hp <= 0) {
-        targetState.isDead = true;
-        target.setVelocity(0, 0);
-        target.play(`${targetKey}_dead`, true);
-      } else {
-        target.play(`${targetKey}_hurt`, true);
-        this.time.delayedCall(600, () => {
-          if (!targetState.isDead) {
-            targetState.isBeingHit = false;
-          }
-        });
-      }
-    }
+  flashHitbox(rect, color) {
+    const oldColor = rect.fillColor;
+    rect.setFillStyle(color, 0.5);
+    this.time.delayedCall(200, () => rect.setFillStyle(oldColor, 0.5));
   }
 
   createPlayer(prefix, x, ground) {
@@ -123,14 +77,20 @@ class MainScene extends Phaser.Scene {
     player.setCollideWorldBounds(true);
     this.physics.add.collider(player, ground);
 
-    const bodyBox = this.add.rectangle(0, 0, 60, 70, 0x00ff00, 0.3).setOrigin(0.5);
+    // BodyBox: tím
+    const bodyBox = this.add.rectangle(0, 0, 60, 70, 0xff00ff, 0.5).setOrigin(0.5);
     this.physics.add.existing(bodyBox);
     bodyBox.body.allowGravity = false;
 
-    const attackBox = this.add.rectangle(0, 0, 80, 40, 0xffff00, 0.3).setOrigin(0.5);
+    // AttackBox: đỏ
+    const attackBox = this.add.rectangle(0, 0, 80, 40, 0xff0000, 0.5).setOrigin(0.5);
     this.physics.add.existing(attackBox);
     attackBox.body.enable = false;
     attackBox.body.allowGravity = false;
+
+    // Mặc định ẩn hitbox
+    bodyBox.setVisible(this.showHitbox);
+    attackBox.setVisible(this.showHitbox);
 
     const keys = this.input.keyboard.addKeys(prefix === "p1"
       ? { up: "K", left: "A", right: "D", attack: "J" }
@@ -141,19 +101,19 @@ class MainScene extends Phaser.Scene {
         attack: Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE
       });
 
-    const sounds = {
-      jump: this.sound.add("p1_jump")
-    };
-
-    if (prefix === "p1") {
-      sounds.slash = this.sound.add("p1_slash");
-      sounds.prepare = this.sound.add("p1_prepare");
-      sounds.blast = this.sound.add("p1_blast");
-      sounds.hurt = this.sound.add("p1_hurt");
-    } else {
-      sounds.slash = this.sound.add("p2_slash");
-      sounds.hurt = this.sound.add("p2_hurt");
-    }
+    const sounds = prefix === "p1"
+      ? {
+          jump: this.sound.add("p1_jump"),
+          slash: this.sound.add("p1_slash"),
+          prepare: this.sound.add("p1_prepare"),
+          blast: this.sound.add("p1_blast"),
+          hurt: this.sound.add("p1_hurt")
+        }
+      : {
+          jump: this.sound.add("p1_jump"),
+          slash: this.sound.add("p2_slash"),
+          hurt: this.sound.add("p2_hurt")
+        };
 
     const state = {
       isAttacking: false,
@@ -195,17 +155,29 @@ class MainScene extends Phaser.Scene {
   }
 
   update() {
+    // Toggle hitbox bằng phím H
+    if (Phaser.Input.Keyboard.JustDown(this.toggleKey)) {
+      this.showHitbox = !this.showHitbox;
+      this.p1BodyBox.setVisible(this.showHitbox);
+      this.p1AttackBox.setVisible(this.showHitbox);
+      this.p2BodyBox.setVisible(this.showHitbox);
+      this.p2AttackBox.setVisible(this.showHitbox);
+    }
+
     ["p1", "p2"].forEach((prefix, i) => {
       const player = this[prefix];
       const keys = this[`keys${prefix.toUpperCase()}`];
       const state = this[`${prefix}State`];
-      const sounds = this[`${prefix}_sounds`];
-      const opponent = this[i === 0 ? "p2" : "p1"];
       const attackBox = this[`${prefix}AttackBox`];
       const bodyBox = this[`${prefix}BodyBox`];
+      const sounds = this[`${prefix}_sounds`];
+      const opponent = this[i === 0 ? "p2" : "p1"];
 
+      // Update vị trí hitbox
       bodyBox.x = player.x;
       bodyBox.y = player.y + 25;
+      attackBox.x = player.x + (player.flipX ? -20 : 20);
+      attackBox.y = player.y + 10;
 
       if (state.isBeingHit || state.isDead || state.isKnockback) return;
 
@@ -232,9 +204,7 @@ class MainScene extends Phaser.Scene {
         if (Phaser.Input.Keyboard.JustDown(keys.attack)) {
           const atk = state.attackStage;
           const atkKey = `${prefix}_attack${atk}`;
-          if (this.anims.exists(atkKey)) {
-            player.play(atkKey, true);
-          }
+          if (this.anims.exists(atkKey)) player.play(atkKey, true);
 
           state.currentAttackStage = atk;
           player.setVelocityX(0);
@@ -247,13 +217,6 @@ class MainScene extends Phaser.Scene {
 
           const activateHitbox = () => {
             attackBox.body.enable = true;
-            attackBox.setVisible(true);
-            attackBox.setSize(80, 50);
-            attackBox.body.setSize(64, 64);
-            const offsetX = player.flipX ? -5 : 5;
-            attackBox.x = player.x + offsetX;
-            attackBox.y = player.y + 10;
-
             this.time.delayedCall(250, () => {
               attackBox.body.enable = false;
             });
@@ -266,11 +229,8 @@ class MainScene extends Phaser.Scene {
               activateHitbox();
             });
           } else {
-            if (atk === 1) {
-              this.time.delayedCall(250, () => sounds.slash?.play());
-            } else {
-              sounds.slash?.play();
-            }
+            if (atk === 1) this.time.delayedCall(250, () => sounds.slash?.play());
+            else sounds.slash?.play();
             activateHitbox();
           }
 
@@ -283,15 +243,61 @@ class MainScene extends Phaser.Scene {
       }
 
       if (!state.isAttacking) {
-        if (!player.body.blocked.down) {
-          player.play(`${prefix}_jump`, true);
-        } else if (player.body.velocity.x !== 0) {
-          player.play(`${prefix}_walk`, true);
-        } else {
-          player.play(`${prefix}_idle`, true);
-        }
+        if (!player.body.blocked.down) player.play(`${prefix}_jump`, true);
+        else if (player.body.velocity.x !== 0) player.play(`${prefix}_walk`, true);
+        else player.play(`${prefix}_idle`, true);
       }
     });
+  }
+
+  handleHit(targetKey, attackerKey) {
+    const target = this[targetKey];
+    const targetState = this[`${targetKey}State`];
+    const attacker = this[attackerKey];
+    const attackerState = this[`${attackerKey}State`];
+    const attackerStage = attackerState.currentAttackStage;
+
+    if (targetState.isBeingHit || targetState.isDead || targetState.isKnockback || !attackerStage) return;
+
+    target.setFlipX(target.x > attacker.x);
+    targetState.isBeingHit = true;
+    this[`${targetKey}_sounds`]?.hurt?.play();
+
+    const expectedStage = (targetState.lastHitStage || 0) + 1;
+    targetState.comboHitCount = attackerStage === expectedStage
+      ? (targetState.comboHitCount || 1) + 1
+      : 1;
+    targetState.lastHitStage = attackerStage;
+
+    const direction = target.x < attacker.x ? -1 : 1;
+
+    if (targetState.comboHitCount >= 4) {
+      target.setVelocityY(-400);
+      target.x += direction * 100;
+      target.play(`${targetKey}_knock`, true);
+
+      targetState.comboHitCount = 0;
+      targetState.lastHitStage = 0;
+      targetState.isKnockback = true;
+
+      this.time.delayedCall(1000, () => {
+        targetState.isKnockback = false;
+        targetState.isBeingHit = false;
+      });
+
+    } else {
+      target.x += direction * 30;
+      if (targetState.hp <= 0) {
+        targetState.isDead = true;
+        target.setVelocity(0, 0);
+        target.play(`${targetKey}_dead`, true);
+      } else {
+        target.play(`${targetKey}_hurt`, true);
+        this.time.delayedCall(600, () => {
+          if (!targetState.isDead) targetState.isBeingHit = false;
+        });
+      }
+    }
   }
 
   createAnimations(prefix) {
@@ -313,10 +319,7 @@ const config = {
   width: 800,
   height: 600,
   backgroundColor: "#1d1d1d",
-  physics: {
-    default: "arcade",
-    arcade: { gravity: { y: 800 }, debug: false }
-  },
+  physics: { default: "arcade", arcade: { gravity: { y: 800 }, debug: false } },
   scene: MainScene
 };
 
