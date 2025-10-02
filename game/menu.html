@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game 2 người</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #282c34;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('gif/nyan.gif');
+            background-size: 100% 100%;
+            background-position: center;
+        }
+        .menu {
+            text-align: center;
+            margin-top: 500px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-family: 'Verdana', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .menu button {
+            border: none;
+            background: none;
+            color: white;
+            padding: 10px 30px;
+            font-size: 20px;
+            margin: 5px 0;
+            cursor: pointer;
+            border-radius: 6px;
+            width: 80%;
+            text-shadow: 10px;
+            transition: transform 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
+        }
+        @keyframes colorChange {
+            0% { color: rgb(255, 255, 255); }
+            25% { color: rgb(255, 87, 34); }
+            50% { color: rgb(33, 150, 243); }
+            75% { color: rgb(156, 39, 176); }
+            100% { color: rgb(255, 87, 34); }
+        }
+        .menu button:hover {
+            transform: scale(1.5);
+            animation: colorChange 2s infinite;
+            font-weight: bold;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0; 
+            animation: fadeIn 0.3s forwards; 
+        }
+
+        .guide-popup {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            color: black;
+            text-align: center;
+            width: 500px;
+            max-width: 90%;
+        }
+
+        .guide-popup img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .popup {
+            background: #ffffff;
+            padding: 10px;
+            border-radius: 50px;
+            color: rgb(0, 0, 0);
+            text-align: center;
+            width: 300px;
+            max-width: 90%;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <h1>GIẢ LẬP ĐÁNH NHAU 2 NGƯỜI KHÔNG SỢ ĐAU</h1>
+        <button onclick="window.location.href='game.html'">Chơi</button>
+        <button onclick="openGuidePopup()">Hướng dẫn</button>
+        <button onclick="window.location.href='patchnote.html'">Patch Note</button>
+        <button onclick="openCreditPopup()">Credit</button>
+        <button onclick="window.location.href='../index.html'">Thoát</button>
+    </div>
+    <div class="overlay" id="guidePopup">
+        <div class="guide-popup">
+            <h2>Hướng Dẫn</h2>
+            <img src="assets/GUIDE.png" alt="Hướng dẫn game" />
+            <button onclick="closePopup('guidePopup')">Đóng</button>
+        </div>
+    </div>
+    <div class="overlay" id="creditPopup">
+        <div class="popup">
+            <h2>CREATOR</h2>
+            <p>Nguyễn <strong>'Kaitouu'</strong> Mạnh Tuấn</p>
+            <button onclick="closePopup('creditPopup')">Đóng</button>
+        </div>
+    </div>
+
+    <script>
+        const hoverSound = new Audio('sound/hover.mp3');
+
+        function openGuidePopup() {
+            const popup = document.getElementById('guidePopup');
+            popup.style.display = 'flex';
+        }
+
+        function openCreditPopup() {
+            const popup = document.getElementById('creditPopup');
+            popup.style.display = 'flex';
+        }
+
+        function closePopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'none'; 
+        }
+
+        // Thêm sự kiện hover cho tất cả các nút
+        const buttons = document.querySelectorAll('.menu button');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                console.log('hover')
+                hoverSound.play();
+            });
+        });
+    </script>
+</body>
+</html>

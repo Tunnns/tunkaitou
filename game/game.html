@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đối kháng 2 người</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="overlay" class="overlay"></div>
+    <div id="meoMeoPopup" class="popup">
+        <div class="popupContent">
+            <p>Nếu bạn chơi không thấy hiệu ứng thì chơi 10 giây sau rồi chơi tiếp</p>
+            <p>Bấm ra ngoài để tắt thông báo này</p>
+        </div>
+    </div>
+    <div id="gameContainer">
+        <!-- Player 1 -->
+        <div id="player1" class="player">
+            <img id="player1Sprite" src="assets/idle/player1/idle1.png" alt="Player 1">
+            <img id="player1Block" class="playerBlock" src="assets/attack/block/block.png" style="display: none;" />
+        </div>
+        <!-- Player 2 -->
+        <div id="player2" class="player">
+            <img id="player2Sprite" src="assets/idle/player2/idle1.png" alt="Player 2">
+            <img id="player2Block" class="playerBlock" src="assets/attack/block/block.png" style="display: none;" />
+        </div>
+        <!-- Health and Mana bars -->
+        <div id="healthBar1" class="healthBar"></div> <!-- Player 1 -->
+        <div id="manaBar1" class="manaBar"></div>
+        <div id="healthBar2" class="healthBar"></div> <!-- Player 2 -->
+        <div id="manaBar2" class="manaBar"></div>
+        <!-- Back to Menu -->
+        <a href="menu.html" id="backToIndexButton">Trở về Trang Chủ</a>
+    </div>
+    <!-- GameOver -->
+    <div id="floatingText">Bấm vào màn hình để chơi lại</div>
+    <div id="gameOverMessage"><div id="winnerMessage"></div></div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+body, h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Nunito", sans-serif;
+    background-color: #000000;
+    color: #030303;
+    text-align: center;
+    overflow-x: hidden;
+    position: relative;
+    margin: 0; /* Bỏ margin mặc định */
+    height: 100vh; /* Đảm bảo body chiếm toàn bộ chiều cao màn hình */
+    overflow: hidden; /* Ngăn cuộn trong khi hiệu ứng đang diễn ra */
+    opacity: 0; /* Bắt đầu với độ trong suốt bằng 0 */
+    transition: opacity 0.5s ease; /* Hiệu ứng chuyển tiếp cho độ trong suốt */
+    background-image: url('no.jpg'); /* Đặt hình nền */
+    background-size: cover; /* Đảm bảo hình nền phủ toàn bộ màn hình */
+    background-position: center; /* Căn giữa hình nền */
+    background-repeat: no-repeat; /* Không lặp lại hình nền */
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.container:hover {
+    background-color: #e4ecee;
+}
+
+.image-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 200px;
+}
+
+.image-container {
+    position: relative;
+    text-align: center;
+}
+
+.side-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #cacaca;
+    transition: box-shadow 0.1s ease;
+}
+
+/* Hiệu ứng viền RGB di chuyển */
+.side-image {
+    position: relative;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.8), 0 0 30px rgba(0, 0, 255, 0.8);
+    animation: rgb-move 3s linear infinite, rgb-color 2s linear infinite;
+}
+
+/* Hiệu ứng di chuyển và thay đổi màu sắc */
+@keyframes rgb-color {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.8), 0 0 30px rgba(0, 0, 255, 0.8);
+    }
+    33% {
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.8), 0 0 20px rgba(0, 0, 255, 0.8), 0 0 30px rgba(255, 0, 0, 0.8);
+    }
+    66% {
+        box-shadow: 0 0 10px rgba(0, 0, 255, 0.8), 0 0 20px rgba(255, 0, 0, 0.8), 0 0 30px rgba(0, 255, 0, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.8), 0 0 30px rgba(0, 0, 255, 0.8);
+    }
+}
+
+figcaption {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #707070;
+}
+
+.left {
+    margin-right: 20px;
+}
+
+.right {
+    margin-left: 0px;
+}
+
+.content {
+    flex: 2;
+    max-width: 600px; 
+}
+
+.header {
+    margin-bottom: 30px;
+}
+
+.avatar-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #000000;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.avatar:hover {
+    transform: scale(1.1);
+    border-color: #0056b3;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.bio {
+    font-size: 1.2em;
+    color: #707070;
+    line-height: 1.4;
+}
+
+.contact {
+    margin-bottom: 30px;
+}
+
+.contact h2, .social-links h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #000000;
+    transition: color 0.3s ease;
+}
+
+.contact h2:hover, .social-links h2:hover {
+    color: #0056b3;
+}
+
+.contact-list {
+    list-style: none;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.contact-list li {
+    margin-bottom: 10px;
+}
+
+.contact-list a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.contact-list a:hover {
+    text-decoration: underline;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-grid {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    font-size: 1.2em;
+    padding: 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+.social-link.facebook {
+    background-color: #426ece;
+}
+
+.social-link.youtube {
+    background-color: #f21d1d;
+}
+
+.social-link.discord {
+    background-color: #02537e;
+}
+
+.social-link.tiktok {
+    background-color: #000000;
+}
+
+/* Hiệu ứng ngôi sao */
+.snow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.star {
+    position: absolute;
+    background: radial-gradient(star, rgba(255, 255, 255, 0.8), rgba(62, 146, 255, 0.6));
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    opacity: 0.8;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+    animation: twinkle 1.5s infinite, move 30s linear infinite, rgb 5s linear infinite;
+}
+
+@keyframes twinkle {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+}
+
+/* Hiệu ứng di chuyển */
+@keyframes move {
+    from {
+        transform: translateY(-100vh) translateX(-50vw);
+    }
+    to {
+        transform: translateY(100vh) translateX(50vw);
+    }
+}
+
+/* Hiệu ứng RGB */
+@keyframes rgb {
+    0% {
+        background-color: rgba(255, 0, 0, 0.8);
+    }
+    33% {
+        background-color: rgba(0, 255, 0, 0.8);
+    }
+    66% {
+        background-color: rgba(0, 0, 255, 0.8);
+    }
+    100% {
+        background-color: rgba(255, 0, 0, 0.8);
+    }
+}
+
+/* Hiệu ứng văn bản khi di chuột qua hình ảnh */
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.hover-text {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.image-container:hover .hover-text {
+    opacity: 1;
+}
+
+/* Dòng chữ tĩnh với hiệu ứng RGB */
+.scrolling-text {
+    position: absolute;
+    left: 450px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    animation: rgb-color 5s linear infinite;
+}
+
+@keyframes rgb-color {
+    0% {
+        color: rgb(255, 0, 0);
+    }
+    33% {
+        color: rgb(0, 255, 0);
+    }
+    66% {
+        color: rgb(0, 0, 255);
+    }
+    100% {
+        color: rgb(255, 0, 0);
+    }
+}
+
+/*Mèo*/
+@keyframes moveCat {
+    0% {
+        transform: translateX(0) scaleX(-1);
+        background-image: url('https://play-lh.googleusercontent.com/CmR66VvL2oIbwjbN_S5imu5zJkv3drHq9VVtANnPhWuTs0WdswXneZa9vfLOQdUA3-QY=w600-h300-pc0xffffff-pd');
+    }
+    50% {
+        transform: translateX(calc(100%-150px)) scaleX(1); /* Không biết nó có chạy không nhỉ? */
+        background-image: url('https://play-lh.googleusercontent.com/CmR66VvL2oIbwjbN_S5imu5zJkv3drHq9VVtANnPhWuTs0WdswXneZa9vfLOQdUA3-QY=w600-h300-pc0xffffff-pd'); 
+    }
+    100% {
+        transform: translateX(0) scaleX(-1);
+        background-image: url('https://play-lh.googleusercontent.com/CmR66VvL2oIbwjbN_S5imu5zJkv3drHq9VVtANnPhWuTs0WdswXneZa9vfLOQdUA3-QY=w600-h300-pc0xffffff-pd');
+    }
+}
+
+/* Hiệu ứng nhảy của mèo */
+@keyframes jump {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-40px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.cat-container {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    overflow: hidden; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cat {
+    width: 150px;
+    height: auto;
+    cursor: pointer;
+    position: absolute;
+    animation: moveCat 3s linear infinite;
+    transition: transform 0.1s ease;
+    will-change: transform, background-image;
+}
+
+.cat.jump {
+    animation: jump 0.4s ease forwards;
+}
+
+/* Nút bấm */
+.button-section {
+    margin-top: 0px;
+    text-align: center;
+}
+
+#action-button {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#action-button:hover {
+    background-color: #000000;
+    transform: translateY(-2px);
+}
+
+#action-button:active {
+    transform: translateY(1px);
+}
+
+.dayxh {
+    text-align: center;
+    margin-top: 100px; 
+    color: #fdfafa;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+#Dongho {
+    font-size: 24px; 
+    font-weight: bold; 
+}
+
+body.visible {
+    opacity: 1; 
+}
+
+/* css lựa chọn game */
+#choices-table {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 10px;
+}
+
+.choice {
+    margin: 10px 0;
+    padding: 10px;
+    cursor: pointer;
+    width: 150px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.choice:hover {
+    background-color: #e0e0e0;
+}

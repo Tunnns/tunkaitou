@@ -1,13 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <title>NvsB nhái</title>
-  <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
-  <link rel="stylesheet" href="src/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weo com tu mai web sai</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://scontent.fhan5-7.fna.fbcdn.net/v/t1.15752-9/455428151_1025551765439311_8561787615265413148_n.png?_nc_cat=102&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeE-Jl4Yh_N_fpUrYNoDZ3NMNtZq0Ekvf-Y21mrQSS9_5kEGE_SMah1x7hGJpIDVDHeUCTAW57m4TKKUgB_nXaY9&_nc_ohc=3BG4dJahjyYQ7kNvgHN2LnJ&_nc_ht=scontent.fhan5-7.fna&oh=03_Q7cD1QEUvbzuuiGs_7yWb7CGnj8voSrGahsLIVtAuRuqj4qq2g&oe=66E956D5" type="image/png">
 </head>
 <body>
-<p style="color: wheat;font-family: monospace;">Tún Kaitou</p>
+    <div class="snow"></div>
+    <div class="container">
+        <div class="image-wrapper" onclick="window.location.href='payment.php'">
+            <figure class="image-container">
+                <img src="qrcode.jpg" alt="QRCODE" class="side-image left">
+                <div class="hover-text">Ấn vào để chuyển tới trang chuyển tiền.</div>
+                <figcaption>Bấm vào để Donate cho tớ</figcaption>
+            </figure>
+        </div>        
+        <div class="content">
+            <header class="header">
+                <h1>Nguyễn Mạnh Tuấn</h1>
+                <p class="bio">Tớ là Tuấn và tớ đang tập làm web hoặc something...</p>
+            </header>
+            <section class="contact">
+                <h2>Thông tin của tớ</h2>
+                <ul class="contact-list">
+                    <li>Email: <a href="mailto:ismetuannguyen@gmail.com">ismetuannguyen@gmail.com</a></li>
+                </ul>
+            </section>
+            <section class="social-links">
+                <h2>Mạng xã hội của tớ</h2>
+                <div class="social-grid">
+                    <a href="https://facebook.com/tolatuan123" target="_blank" class="social-link facebook">Facebook</a>
+                    <a href="https://www.youtube.com/@kaitouaonhayy" target="_blank" class="social-link youtube">Youtube</a>
+                    <a href="https://discord.gg/jrH87Ykz8k" target="_blank" class="social-link discord">Group Discord</a>
+                    <a href="https://www.tiktok.com/@tunkt_2025" target="_blank" class="social-link tiktok">TikTok</a>
+                </div>
+            </section>
+        </div>
+        <div class="image-wrapper">
+            <figure class="image-container">
+                <img src="https://scontent.fhan14-5.fna.fbcdn.net/v/t39.30808-6/462494363_122160213404261179_7913848875720109608_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=3evHA-pICLQQ7kNvgFxTOhF&_nc_zt=23&_nc_ht=scontent.fhan14-5.fna&_nc_gid=AY3qHfaohFm_FeCtmHl28j8&oh=00_AYCvkxNDJCSOPHRKybIsCG0lIMP0e-ttcHB5ew25xT0C3A&oe=672529CF" alt="Đang lỗi ảnh" class="side-image right">
+                <div class="hover-text">Đây là mèo.</div>
+                <figcaption>Tún Kaitou</figcaption>
+            </figure>
+        </div>
+    </div>
+    <div class="cat-container">
+        <img src="https://play-lh.googleusercontent.com/CmR66VvL2oIbwjbN_S5imu5zJkv3drHq9VVtANnPhWuTs0WdswXneZa9vfLOQdUA3-QY=w600-h300-pc0xffffff-pd" alt="Con mèo" class="cat" id="cat">
+        <audio id="cat-sound" src="meo-jump.mp3"></audio>
+    </div>
+    <section class="button-section">
+        <button id="action-button" onclick="showChoices()">Bấm vào đây nếu cậu muốn chơi game ..?</button>         
+    </section>
+    
+    <div id="choices-table" style="display:none;">
+        <div class="choice" onclick="redirectTo('game/menu.html')">
+            <p>Đối Kháng 2 Người</p>
+        </div>
+        <div class="choice" onclick="redirectTo('dino/index.html')">
+            <p>Chạy Ngay Đi</p>
+        </div>
+    </div>
+
+    <div class="dayxh">
+        <div id="Dongho"></div>
+        <p>© 2024. Tunkaitouu</p>
+    </div>
+    <script src="script.js"></script>
 </body>
-<script type="module" src="src/script.js"></script>
 </html>

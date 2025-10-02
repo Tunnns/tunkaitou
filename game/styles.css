@@ -1,0 +1,232 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Kiểu dáng cho Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Nội dung của Popup */
+.popupContent {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+/* Hiệu ứng Fade-in */
+.popup.show {
+    display: flex;
+    opacity: 1;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    flex-direction: column;
+    transform: scale(1.5); /* Phóng to body lên 2.4 lần */
+    transform-origin: center;
+    width: 100%;
+    overflow: hidden; 
+}
+
+#gameContainer {
+    background-image: url('assets/background/bg2.gif');
+    background-size: 100% 100%;
+    position: relative;
+    width: 800px;
+    height: 400px;
+    background-color: #ccc;
+    border: 0.1px solid #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden; 
+}
+
+#backToIndexButton {
+    position: absolute;
+    bottom: 375px;
+    left: 50%;
+    transform: translateX(-50%); /* Căn giữa */
+    padding: 5px 10px;
+    color: black;
+    text-decoration: none;
+    border-radius: 100px;
+    font-size: 7px;
+    font-weight: bolder;
+}
+
+/* Tạo hiệu ứng chữ RGB */
+@keyframes rgbAnimation {
+    0% { color: black; }
+    33% { color: rgb(0, 255, 0); }
+    66% { color: blue; }
+    100% { color: red; }
+}
+
+#backToIndexButton:hover {
+    animation: rgbAnimation 2s infinite;
+}
+
+
+/*/////////////////////////////////////////////////*/
+.player {
+    position: absolute;
+    width: 100px; 
+    height: 80px; 
+    top: 284px;
+    transition: top 0s , left 0s ;
+    background-size: cover;
+}
+
+#player1 {
+    left: 50px;
+}
+#player1Sprite {
+    width: 100px; 
+    height: 100px; 
+}
+
+#player2 {
+    right: 50px;
+}
+#player2Sprite {
+    width: 100px; 
+    height: 100px; 
+}
+
+.playerContainer {
+    position: relative;
+    width: 100px; 
+    height: 200px; 
+}
+
+.playerIdle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.playerBlock {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;  
+}
+
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////*
+/* Thanh máu */
+.healthBar {
+    position: absolute;
+    width: 100px;
+    height: 10px;
+    top: 10px;
+}
+#healthBar1 {
+    left: 20px;
+    background-color: red;
+    transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+#healthBar2 {
+    right: 20px;
+    background-color: red;
+    transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* Thanh năng lượng */
+.manaBar {
+    width: 100px;
+    height: 10px;
+    background-color: yellow;
+    position: absolute;
+    margin-top: 5px;
+}
+/* Thanh Mana */
+#manaBar1 {
+    top: 20px;
+    left: 20px;
+    transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+#manaBar2 {
+    top: 20px;
+    right: 20px;
+    transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* Thông báo kết quả */
+#gameOverMessage {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 2rem;
+    color: red; 
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    border: none;  
+    display: none; 
+    cursor: pointer;  
+}
+
+#winnerMessage {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff0000; 
+}
+#gameOverMessage.hidden {
+    display: none;
+}
+
+#floatingText {
+    position: fixed;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8rem;
+    color: black;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.1);
+    animation: floatUp 1.5s infinite alternate;
+    display: none;
+    pointer-events: none;
+}
+
+
+@keyframes floatUp {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+    50% {
+        transform: translate(-50%, -70%);
+    }
+}
+

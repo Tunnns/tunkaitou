@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông báo về DONATE</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('game/gif/archive.gif');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .popup {
+            background: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+            height: auto;
+            transform: translateY(-70px);
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            position: relative;
+        }
+
+        .popup img {
+            max-width: 400px;
+            margin-bottom: 30px;
+        }
+
+        .popup h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .popup p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .popup button {
+            margin-top: -30px;
+            padding: 10px 30px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .overlay.active .popup {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .popup .extra-donate {
+            position: absolute;
+            top: 20px;
+            right: -220px;
+            background: rgb(255, 255, 255);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 200px;
+        }
+
+        .popup .extra-donate img {
+            max-width: 180px;
+            margin-bottom: 10px;
+        }
+
+        .popup .extra-donate a {
+            text-decoration: none;
+            color: #000000;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="notification">
+        <div class="popup">
+            <h2>Thông báo</h2>
+            <p>Donate bằng MoMo đã vô hiệu hoá, vui lòng donate qua QRCode này hoặc qua Banking</p>
+            <p>STK: TUNPRO137 - MBbank</p>
+            <img src="https://img.vietqr.io/image/MB-TUNPRO137-print.png" alt="QRCode MB Bank" />
+
+            <div class="extra-donate">
+                <img src="uiia.gif" alt="WeScan">
+                <a href="https://wescan.vn/tunkaitouu" target="_blank">Bấm để Donate qua Wescan</a>
+            </div>
+
+            <button onclick="closePopup()">Đóng</button>
+        </div>
+    </div>
+    <script>
+        window.onload = function() {
+            const overlay = document.getElementById('notification');
+            setTimeout(() => {
+                overlay.classList.add('active');
+            }, 300);
+        }
+        function closePopup() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
