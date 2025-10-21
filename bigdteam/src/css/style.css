@@ -1,0 +1,195 @@
+/* Font pixel Minecraft */
+@font-face {
+  font-family: 'Minecraft';
+  src: url('../fonts/minecraft.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #e7e7e7;
+  font-family: 'Minecraft', monospace;
+  color: #222;
+  text-align: center;
+  width: 1000px;
+  margin: auto;
+}
+
+/* HEADER */
+header {
+  background-color: #1c1c1c;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 60px;
+}
+
+header img {
+  height: 70px;
+}
+
+header h1 {
+  font-size: 38px;
+  margin: 0;
+  text-shadow: 2px 2px #000;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+nav a:hover {
+  color: #ccc;
+}
+
+/* PIXEL BUTTON */
+.pixel-btn {
+  font-family: 'Minecraft', monospace;
+  background: #d9d9d9;
+  border: 3px solid #888;
+  padding: 10px 30px;
+  margin: 20px 10px;
+  font-size: 16px;
+  color: #444;
+  box-shadow: 4px 4px #444;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.pixel-btn:hover {
+  transform: translateY(2px);
+  box-shadow: 2px 2px #444;
+}
+
+/* SEARCH BAR */
+.search-bar {
+  display: inline-flex;
+  align-items: center;
+  background: #f4f4f4;
+  border: 3px solid #888;
+  padding: 5px;
+  margin-top: 10px;
+  box-shadow: 3px 3px #555;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  font-family: 'Minecraft', monospace;
+  background: transparent;
+  padding: 5px 10px;
+  font-size: 14px;
+  width: 200px;
+}
+
+.search-bar button {
+  font-family: 'Minecraft', monospace;
+  border: 3px solid #888;
+  background: #d9d9d9;
+  box-shadow: 3px 3px #555;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* MAP CARD */
+.map-card {
+  background: white;
+  width: 60%;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: left;
+  border: 3px solid #999;
+  box-shadow: 4px 4px #666;
+}
+
+.map-card h2 {
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.map-card img {
+  width: 100%;
+  border: 3px solid #999;
+  margin: 10px 0;
+}
+
+.map-card p {
+  font-size: 14px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.download-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* FOOTER (nếu cần sau này) */
+footer {
+  background: #1c1c1c;
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+.map-card {
+  background: white;
+  width: 60%;
+  margin: 40px auto;
+  padding: 20px;
+  border: 3px solid #999;
+  box-shadow: 4px 4px #666;
+}
+
+/* Thêm layout sản phẩm datapack và map */
+.map-card {
+  background: white;
+  width: 90%;
+  margin: 40px auto;
+  padding: 20px;
+  border: 3px solid #999;
+  box-shadow: 4px 4px #666;
+  overflow: hidden;
+  text-align: left;
+}
+
+.map-card h2 {
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.map-card img {
+  float: left;
+  width: 45%;
+  margin-right: 20px;
+  border: 3px solid #999;
+}
+
+.map-card h3 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.map-card p {
+  font-size: 14px;
+  line-height: 1.4;
+  word-break: break-word;
+}
