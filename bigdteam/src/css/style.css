@@ -1,108 +1,195 @@
-/* Font pixel kiểu Minecraft */
+/* Font pixel Minecraft */
+@font-face {
+  font-family: 'Minecraft';
+  src: url('../fonts/minecraft.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    background: #e6e7e9;
-    font-family: 'Press Start 2P', monospace;
-    color: #000;
-    text-align: center;
-    width: 1000px;
-    margin: auto;
+  background-color: #e7e7e7;
+  font-family: 'Minecraft', monospace;
+  color: #222;
+  text-align: center;
+  width: 1000px;
+  margin: auto;
 }
 
 /* HEADER */
-.navbar {
-    background: #1b1b1b;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 60px;
-    border-bottom: 3px solid #000;
+header {
+  background-color: #1c1c1c;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 60px;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+header img {
+  height: 70px;
 }
 
-.logo img {
-    height: 65px;
+header h1 {
+  font-size: 38px;
+  margin: 0;
+  text-shadow: 2px 2px #000;
 }
 
-.logo h1 {
-    font-size: 22px;
-    margin: 0;
-    letter-spacing: 1px;
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 18px;
+  transition: 0.2s;
 }
 
-.navbar nav a {
-    text-decoration: none;
-    color: white;
-    font-size: 13px;
-    margin-left: 20px;
-    transition: opacity 0.2s;
+nav a:hover {
+  color: #ccc;
 }
 
-.navbar nav a:hover {
-    opacity: 0.8;
-}
-
-/* MENU BUTTONS */
-.menu-btns {
-    margin: 40px 0 20px;
-}
-
+/* PIXEL BUTTON */
 .pixel-btn {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 13px;
-    padding: 15px 35px;
-    margin: 0 15px;
-    background: #cfd0d2;
-    border: 3px solid #888;
-    box-shadow: 4px 4px 0 #666;
-    cursor: pointer;
-    transition: transform 0.1s;
+  font-family: 'Minecraft', monospace;
+  background: #d9d9d9;
+  border: 3px solid #888;
+  padding: 10px 30px;
+  margin: 20px 10px;
+  font-size: 16px;
+  color: #444;
+  box-shadow: 4px 4px #444;
+  cursor: pointer;
+  transition: all 0.1s ease;
 }
 
-.pixel-btn:active {
-    transform: translateY(2px);
-    box-shadow: 2px 2px 0 #666;
+.pixel-btn:hover {
+  transform: translateY(2px);
+  box-shadow: 2px 2px #444;
 }
 
-/* UPCOMING SECTION */
-.upcoming h2 {
-    font-size: 18px;
-    margin: 10px 0 25px;
-    letter-spacing: 2px;
+/* SEARCH BAR */
+.search-bar {
+  display: inline-flex;
+  align-items: center;
+  background: #f4f4f4;
+  border: 3px solid #888;
+  padding: 5px;
+  margin-top: 10px;
+  box-shadow: 3px 3px #555;
 }
 
-.preview {
-    display: inline-block;
-    position: relative;
-    background: white;
-    padding: 10px;
-    border-radius: 8px;
+.search-bar input {
+  border: none;
+  outline: none;
+  font-family: 'Minecraft', monospace;
+  background: transparent;
+  padding: 5px 10px;
+  font-size: 14px;
+  width: 200px;
 }
 
-.preview img {
-    width: 650px;
-    border-radius: 3px;
+.search-bar button {
+  font-family: 'Minecraft', monospace;
+  border: 3px solid #888;
+  background: #d9d9d9;
+  box-shadow: 3px 3px #555;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
-/* PLAY ICON GIỮA ẢNH (pixelated) */
-.play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 80px;
-    height: 80px;
-    background: url('https://i.imgur.com/rbd6D6k.png') no-repeat center;
-    background-size: contain;
-    transform: translate(-50%, -50%);
-    image-rendering: pixelated;
-    cursor: pointer;
+/* MAP CARD */
+.map-card {
+  background: white;
+  width: 60%;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: left;
+  border: 3px solid #999;
+  box-shadow: 4px 4px #666;
 }
 
-.play-icon:hover {
-    transform: translate(-50%, -50%) scale(1.1);
+.map-card h2 {
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.map-card img {
+  width: 100%;
+  border: 3px solid #999;
+  margin: 10px 0;
+}
+
+.map-card p {
+  font-size: 14px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.download-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* FOOTER (nếu cần sau này) */
+footer {
+  background: #1c1c1c;
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+.map-card {
+  background: white;
+  width: 60%;
+  margin: 40px auto;
+  padding: 20px;
+  border: 3px solid #999;
+  box-shadow: 4px 4px #666;
+}
+
+/* Thêm layout sản phẩm datapack và map */
+.map-card {
+  background: white;
+  width: 90%;
+  margin: 40px auto;
+  padding: 20px;
+  border: 3px solid #999;
+  box-shadow: 4px 4px #666;
+  overflow: hidden;
+  text-align: left;
+}
+
+.map-card h2 {
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.map-card img {
+  float: left;
+  width: 45%;
+  margin-right: 20px;
+  border: 3px solid #999;
+}
+
+.map-card h3 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.map-card p {
+  font-size: 14px;
+  line-height: 1.4;
+  word-break: break-word;
 }
