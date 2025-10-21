@@ -1,0 +1,108 @@
+/* Font pixel kiểu Minecraft */
+body {
+    background: #e6e7e9;
+    font-family: 'Press Start 2P', monospace;
+    color: #000;
+    text-align: center;
+    width: 1000px;
+    margin: auto;
+}
+
+/* HEADER */
+.navbar {
+    background: #1b1b1b;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 60px;
+    border-bottom: 3px solid #000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    height: 65px;
+}
+
+.logo h1 {
+    font-size: 22px;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.navbar nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    margin-left: 20px;
+    transition: opacity 0.2s;
+}
+
+.navbar nav a:hover {
+    opacity: 0.8;
+}
+
+/* MENU BUTTONS */
+.menu-btns {
+    margin: 40px 0 20px;
+}
+
+.pixel-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 13px;
+    padding: 15px 35px;
+    margin: 0 15px;
+    background: #cfd0d2;
+    border: 3px solid #888;
+    box-shadow: 4px 4px 0 #666;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.pixel-btn:active {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 0 #666;
+}
+
+/* UPCOMING SECTION */
+.upcoming h2 {
+    font-size: 18px;
+    margin: 10px 0 25px;
+    letter-spacing: 2px;
+}
+
+.preview {
+    display: inline-block;
+    position: relative;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.preview img {
+    width: 650px;
+    border-radius: 3px;
+}
+
+/* PLAY ICON GIỮA ẢNH (pixelated) */
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    background: url('https://i.imgur.com/rbd6D6k.png') no-repeat center;
+    background-size: contain;
+    transform: translate(-50%, -50%);
+    image-rendering: pixelated;
+    cursor: pointer;
+}
+
+.play-icon:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
