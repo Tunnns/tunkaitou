@@ -6,7 +6,7 @@
   font-style: normal;
 }
 
-/* Reset */
+/* MAIN */
 * {
   margin: 0;
   padding: 0;
@@ -91,7 +91,7 @@ nav a:hover {
   background: transparent;
   padding: 5px 10px;
   font-size: 14px;
-  width: 200px;
+  width: 300px;
 }
 
 .search-bar button {
@@ -103,40 +103,10 @@ nav a:hover {
   cursor: pointer;
 }
 
-/* MAP CARD */
-.map-card {
-  background: white;
-  width: 60%;
-  margin: 40px auto;
-  padding: 20px;
-  text-align: left;
-  border: 3px solid #999;
-  box-shadow: 4px 4px #666;
-}
-
-.map-card h2 {
-  font-size: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.map-card img {
-  width: 100%;
-  border: 3px solid #999;
-  margin: 10px 0;
-}
-
-.map-card p {
-  font-size: 14px;
-  line-height: 1.4;
-  word-break: break-word;
-}
-
-.download-icon {
+/* .download-icon {
   font-size: 24px;
   cursor: pointer;
-}
+} */
 
 /* FOOTER (nếu cần sau này) */
 footer {
@@ -147,28 +117,44 @@ footer {
   margin-top: 40px;
 }
 
-.map-card {
-  background: white;
-  width: 60%;
-  margin: 40px auto;
-  padding: 20px;
-  border: 3px solid #999;
-  box-shadow: 4px 4px #666;
-}
+  /* STYLE TOAST */
+  #toast {
+    position: fixed;
+    left: 50%;
+    bottom: 40px;
+    transform: translateX(-50%) translateY(30px);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-family: 'Minecraft', monospace;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 9999;
+  }
+
+  #toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 
 /* Thêm layout sản phẩm datapack và map */
-.map-card {
+.product-map {
   background: white;
   width: 90%;
   margin: 40px auto;
   padding: 20px;
-  border: 3px solid #999;
+  border: 1px solid #999;
   box-shadow: 4px 4px #666;
   overflow: hidden;
   text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.map-card h2 {
+.product-map h2 {
   font-size: 20px;
   display: flex;
   justify-content: space-between;
@@ -176,20 +162,39 @@ footer {
   margin-bottom: 15px;
 }
 
-.map-card img {
+.product-map img {
   float: left;
   width: 45%;
   margin-right: 20px;
   border: 3px solid #999;
 }
 
-.map-card h3 {
+.product-map h3 {
   margin-top: 0;
-  font-size: 16px;
+  font-style: bold;
+  font-size: 20px;
 }
 
-.map-card p {
+.product-map p {
   font-size: 14px;
   line-height: 1.4;
   word-break: break-word;
+}
+
+.product-map ul li {
+  list-style: none;
+  margin: 10px 0;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.product-map ul li a {
+  color: black;
+  text-decoration: none;
+}
+
+.product-map:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
