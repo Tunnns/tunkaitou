@@ -299,13 +299,15 @@ footer {
 
 /* ===== QUICK FIX HEADER & LOGO MOBILE ===== */
 /* đảm bảo body không bị cố định width */
-html, body {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  box-sizing: border-box;
+@media (max-width: 768px) {
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
 }
 
 /* header layout */
@@ -412,7 +414,98 @@ nav a {
 }
 
 /* ảnh/video/content không tràn */
+@media (max-width: 768px) {
 img, video, iframe {
   max-width: 100%;
   height: auto;
+}
+}
+
+/* ===== Fix khung video YouTube ===== */
+@media (max-width: 768px) {
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* tỉ lệ 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px; /* bo góc nhẹ, tuỳ chọn */
+  box-shadow: 0 0 10px rgba(0,0,0,0.3); /* thêm bóng */
+}
+}
+
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ===== Fix YouTube Preview Responsive + khoảng cách ===== */
+.preview {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px; /* tạo khoảng cách đều 4 phía */
+  box-sizing: border-box;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
+  background: #000; /* tránh viền trắng khi load */
+}
+
+@media (max-width: 768px) {
+  .menu-btns {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap; /* không cho xuống hàng */
+    gap: 6px; /* khoảng cách giữa các nút */
+    overflow-x: auto; /* nếu vẫn quá hẹp, cho trượt ngang */
+    padding: 0 8px;
+  }
+
+  .menu-btns button {
+    flex-shrink: 1; /* cho phép co nhỏ */
+    font-size: 15px; /* thu nhỏ chữ */
+    padding: 4px 8px; /* thu nhỏ nút */
+    min-width: auto; /* bỏ giới hạn chiều rộng */
+    white-space: nowrap; /* chữ không bị xuống dòng */
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 10px; /* thêm padding bên trong */
+    margin: 0 12px; /* khoảng cách với lề trái/phải */
+    width: calc(100% - 24px); /* trừ phần margin 2 bên để không tràn */
+    box-sizing: border-box;
+  }
+
+  .search-bar input[type="text"] {
+    flex: 1;
+    font-size: 14px;
+    padding: 6px 8px;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  .search-bar button {
+    flex-shrink: 0;
+    font-size: 14px;
+    padding: 6px 10px;
+    white-space: nowrap;
+    box-sizing: border-box;
+  }
 }
