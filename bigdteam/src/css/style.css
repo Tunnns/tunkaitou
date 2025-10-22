@@ -181,14 +181,14 @@ footer {
   word-break: break-word;
 }
 
-.product-map ul li {
+.map-card ul li {
   list-style: none;
   margin: 10px 0;
   font-weight: bold;
   cursor: pointer;
 }
 
-.product-map ul li a {
+.map-card ul li a {
   color: black;
   text-decoration: none;
 }
