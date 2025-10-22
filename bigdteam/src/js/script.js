@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // tạo audio 1 lần
   const audio = new Audio('../src/assets/sounds/minecraftsayno.mp3', 'src/assets/sounds/minecraftsayno.mp3');
+  audio.preload = 'auto'; // ✅ thêm preload
+  audio.load(); // ✅ tải sẵn âm thanh
   audio.volume = 0.5; // giảm âm nếu cần
 
   links.forEach(link => {
@@ -24,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
 
 // Hover sản phẩm
 const tooltip = document.getElementById('hover-tooltip');
