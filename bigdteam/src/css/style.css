@@ -1,4 +1,4 @@
-/* Font pixel Minecraft */
+/* FONT PIXEL MINECRAFT */
 @font-face {
   font-family: 'Minecraft';
   src: url('../fonts/minecraft.otf') format('opentype');
@@ -293,4 +293,126 @@ footer {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+}
+
+
+
+/* ===== QUICK FIX HEADER & LOGO MOBILE ===== */
+/* đảm bảo body không bị cố định width */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* header layout */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 24px;
+  background-color: #1c1c1c;
+  color: #fff;
+  flex-wrap: wrap; /* cho phép xuống dòng nếu quá nhỏ */
+}
+
+/* logo chính (chỉnh kích thước an toàn) */
+header a > img,
+header .main-logo {
+  display: block;
+  max-width: 160px;    /* giới hạn kích thước logo trên desktop */
+  max-height: 120px;   /* nếu logo quá cao */
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* nếu bạn dùng <img style="..."> thì thêm class main-logo cho nhất quán */
+.main-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* tiêu đề (BIGD TEAM) đặt vừa phải */
+header h1 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 2px 2px #000;
+}
+
+/* điều hướng (nav) */
+nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* đảm bảo nav không bị đẩy ra ngoài */
+nav a {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 6px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* ===== Responsive: nhỏ màn hình ===== */
+@media (max-width: 900px) {
+  header {
+    padding: 10px;
+  }
+
+  /* giảm logo trên tablet/mobile */
+  header a > img,
+  header .main-logo {
+    max-width: 110px;
+    max-height: 90px;
+  }
+
+  header h1 {
+    font-size: 20px;
+  }
+
+  nav a { font-size: 14px; }
+}
+
+/* mobile nhỏ (phone) */
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+
+  header a > img,
+  header .main-logo {
+    max-width: 90px;
+    max-height: 70px;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    margin: 6px;
+  }
+}
+
+/* ảnh/video/content không tràn */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
 }

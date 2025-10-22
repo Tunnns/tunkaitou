@@ -78,3 +78,4 @@ document.addEventListener("DOMContentLoaded", () => {
   updateYouTubeAvatar(bigd);
 });
 
+// ------------------------------------ MOBILE UI/UX -----------------------------------------
