@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
       audio.currentTime = 0;
       audio.play().catch(err => console.warn('Âm thanh bị chặn:', err));
       setTimeout(() => toast.classList.remove('show'), 2000);
+      console.log(`Âm thanh: NO`);
     });
   });
 });

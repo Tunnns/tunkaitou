@@ -53,6 +53,10 @@ body {
     text-align: center;
 }
 
+.image-container:hover{
+    cursor: pointer;
+}
+
 .side-image {
     max-width: 100%;
     height: auto;
