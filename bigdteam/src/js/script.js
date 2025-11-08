@@ -4,16 +4,16 @@ function goPage(url) {
   window.location.href = url;
 }
 
-// Hiển thị Toast - id: link-unset
+// Hiển thị Toast - class: link-unset
 document.addEventListener('DOMContentLoaded', () => {
   const links = document.querySelectorAll('.link-unset');
   const toast = document.getElementById('toast');
 
   // tạo audio 1 lần
   const audio = new Audio('../src/assets/sounds/minecraftsayno.mp3', 'src/assets/sounds/minecraftsayno.mp3');
-  audio.preload = 'auto'; // ✅ thêm preload
-  audio.load(); // ✅ tải sẵn âm thanh
-  audio.volume = 0.5; // giảm âm nếu cần
+  audio.preload = 'auto'; // preload
+  audio.load(); // tải sẵn âm thanh
+  audio.volume = 0.5; // giảm âm
 
   links.forEach(link => {
     link.addEventListener('click', (e) => {
@@ -29,17 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // Hover sản phẩm
-const tooltip = document.getElementById('hover-tooltip');
-document.querySelectorAll('.product-map').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    tooltip.style.left = e.pageX + 10 + 'px';
-    tooltip.style.top = e.pageY + 10 + 'px';
-    tooltip.style.opacity = 1;
-  });
-  card.addEventListener('mouseleave', () => {
-    tooltip.style.opacity = 0;
-  });
-});
+// const tooltip = document.getElementById('hover-tooltip');
+// document.querySelectorAll('.product-map').forEach(card => {
+//   card.addEventListener('mousemove', e => {
+//     tooltip.style.left = e.pageX + 10 + 'px';
+//     tooltip.style.top = e.pageY + 10 + 'px';
+//     tooltip.style.opacity = 1;
+//   });
+//   card.addEventListener('mouseleave', () => {
+//     tooltip.style.opacity = 0;
+//   });
+// });
 
 // ------------------------------------------ AVATAR YOUTUBE ------------------------------------------ //
 // Kênh Kaitouu
@@ -67,12 +67,12 @@ async function updateYouTubeAvatar(channel) {
     if (data.items && data.items.length > 0) {
       const avatarUrl = data.items[0].snippet.thumbnails.high.url;
       document.getElementById(channel.element).src = avatarUrl;
-      console.log(`✅ Đã cập nhật avatar cho ${channel.element}`);
+      console.log(`Đã cập nhật avatar ${channel.element}`);
     } else {
-      console.warn(`⚠️ Không tìm thấy dữ liệu cho ${channel.id}`);
+      console.warn(`Không tìm thấy dữ liệu ${channel.id}`);
     }
   } catch (err) {
-    console.error(`❌ Lỗi khi lấy avatar (${channel.id}):`, err);
+    console.error(`Lỗi lấy avatar (${channel.id}):`, err);
   }
 }
 
@@ -83,3 +83,20 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ------------------------------------ MOBILE UI/UX -----------------------------------------
+
+
+// ------------------------------------ ANTI ELEMENT CONSOLE -----------------------------------------
+document.onkeydown = function (e) {
+  if (
+    e.keyCode == 123 || // F12
+    (e.ctrlKey && e.shiftKey && e.keyCode == 73) || // Ctrl+Shift+I
+    (e.ctrlKey && e.shiftKey && e.keyCode == 74) || // Ctrl+Shift+J
+    (e.ctrlKey && e.shiftKey && e.keyCode == 67) || // Ctrl+Shift+C
+    (e.ctrlKey && e.keyCode == 85) // Ctrl+U
+  ) {
+    e.preventDefault();
+    return false;
+  }
+};
+
+document.addEventListener('contextmenu', event => event.preventDefault());

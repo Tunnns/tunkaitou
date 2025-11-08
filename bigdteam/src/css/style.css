@@ -6,7 +6,7 @@
   font-style: normal;
 }
 
-/* MAIN */
+/* ================================================== MAIN ================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -117,28 +117,28 @@ footer {
   margin-top: 40px;
 }
 
-  /* STYLE TOAST */
-  #toast {
-    position: fixed;
-    left: 50%;
-    bottom: 40px;
-    transform: translateX(-50%) translateY(30px);
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    padding: 12px 20px;
-    border-radius: 10px;
-    font-family: 'Minecraft', monospace;
-    font-size: 14px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    z-index: 9999;
-  }
+/* STYLE TOAST */
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%) translateY(30px);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-family: 'Minecraft', monospace;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 9999;
+}
 
-  #toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+#toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
 
 /* THÊM LAYOUT SẢN PHẨM DATAPACK VÀ MAP */
 .product-map {
@@ -214,64 +214,64 @@ footer {
 
 /* PHẦN ABOUT */
 .about-section {
-    text-align: center;
-    color: #fff;
-    background-color: #2e2e2e;
-    padding: 60px 20px;
-    border-radius: 12px;
-    margin: 40px auto;
-    max-width: 900px;
+  text-align: center;
+  color: #fff;
+  background-color: #2e2e2e;
+  padding: 60px 20px;
+  border-radius: 12px;
+  margin: 40px auto;
+  max-width: 900px;
 }
 
 .about-section h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
+  font-size: 2em;
+  margin-bottom: 20px;
 }
 
 .about-section p {
-    max-width: 700px;
-    margin: 0 auto 50px;
-    font-size: 1.1em;
-    line-height: 1.6;
-    color: #ccc;
+  max-width: 700px;
+  margin: 0 auto 50px;
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #ccc;
 }
 
 .team-title {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
 .team-members {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 40px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
 }
 
 .member {
-    text-align: center;
-    max-width: 180px;
+  text-align: center;
+  max-width: 180px;
 }
 
 .member img.avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #fff;
-    box-shadow: 0 0 10px rgba(255,255,255,0.3);
-    margin-bottom: 15px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  margin-bottom: 15px;
 }
 
 .member h3 {
-    margin: 5px 0;
-    font-size: 1.3em;
+  margin: 5px 0;
+  font-size: 1.3em;
 }
 
 .member p {
-    font-size: 0.95em;
-    color: #bbb;
-    border-top: 1px solid #666;
-    padding-top: 5px;
+  font-size: 0.95em;
+  color: #bbb;
+  border-top: 1px solid #666;
+  padding-top: 5px;
 }
 
 .member ul li {
@@ -297,10 +297,12 @@ footer {
 
 
 
-/* ===== QUICK FIX HEADER & LOGO MOBILE ===== */
+/* ================================================== QUICK FIX HEADER & LOGO MOBILE ================================================== */
 /* đảm bảo body không bị cố định width */
 @media (max-width: 768px) {
-  html, body {
+
+  html,
+  body {
     width: 100%;
     max-width: 100%;
     margin: 0;
@@ -319,21 +321,23 @@ header {
   padding: 12px 24px;
   background-color: #1c1c1c;
   color: #fff;
-  flex-wrap: wrap; /* cho phép xuống dòng nếu quá nhỏ */
+  flex-wrap: wrap;
+  /* cho phép xuống dòng nếu quá nhỏ */
 }
 
 /* logo chính (chỉnh kích thước an toàn) */
-header a > img,
+header a>img,
 header .main-logo {
   display: block;
-  max-width: 160px;    /* giới hạn kích thước logo trên desktop */
-  max-height: 120px;   /* nếu logo quá cao */
+  max-width: 160px;
+  /* giới hạn kích thước logo trên desktop */
+  max-height: 120px;
+  /* nếu logo quá cao */
   width: auto;
   height: auto;
   object-fit: contain;
 }
 
-/* nếu bạn dùng <img style="..."> thì thêm class main-logo cho nhất quán */
 .main-title {
   display: flex;
   align-items: center;
@@ -368,14 +372,14 @@ nav a {
   font-size: 16px;
 }
 
-/* ===== Responsive: nhỏ màn hình ===== */
+/* ================================================== Responsive: nhỏ màn hình ================================================== */
 @media (max-width: 900px) {
   header {
     padding: 10px;
   }
 
   /* giảm logo trên tablet/mobile */
-  header a > img,
+  header a>img,
   header .main-logo {
     max-width: 110px;
     max-height: 90px;
@@ -385,7 +389,9 @@ nav a {
     font-size: 20px;
   }
 
-  nav a { font-size: 14px; }
+  nav a {
+    font-size: 14px;
+  }
 }
 
 /* mobile nhỏ (phone) */
@@ -396,7 +402,7 @@ nav a {
     align-items: center;
   }
 
-  header a > img,
+  header a>img,
   header .main-logo {
     max-width: 90px;
     max-height: 70px;
@@ -415,23 +421,29 @@ nav a {
 
 /* ảnh/video/content không tràn */
 @media (max-width: 768px) {
-img, video, iframe {
-  max-width: 100%;
-  height: auto;
-}
+
+  img,
+  video,
+  iframe {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
-/* ===== Fix khung video YouTube ===== */
+/* ================================================== Fix khung video YouTube ================================================== */
 @media (max-width: 768px) {
-.video-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; /* tỉ lệ 16:9 */
-  height: 0;
-  overflow: hidden;
-  border-radius: 8px; /* bo góc nhẹ, tuỳ chọn */
-  box-shadow: 0 0 10px rgba(0,0,0,0.3); /* thêm bóng */
-}
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    /* tỉ lệ 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    /* bo góc nhẹ, tuỳ chọn */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    /* thêm bóng */
+  }
 }
 
 
@@ -444,12 +456,13 @@ img, video, iframe {
   border: none;
 }
 
-/* ===== Fix YouTube Preview Responsive + khoảng cách ===== */
+/* ================================================== Fix YouTube Preview Responsive + khoảng cách ================================================== */
 .preview {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 20px; /* tạo khoảng cách đều 4 phía */
+  padding: 20px;
+  /* tạo khoảng cách đều 4 phía */
   box-sizing: border-box;
 }
 
@@ -460,26 +473,35 @@ img, video, iframe {
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 8px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.3);
-  background: #000; /* tránh viền trắng khi load */
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  background: #000;
+  /* tránh viền trắng khi load */
 }
 
 @media (max-width: 768px) {
   .menu-btns {
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap; /* không cho xuống hàng */
-    gap: 6px; /* khoảng cách giữa các nút */
-    overflow-x: auto; /* nếu vẫn quá hẹp, cho trượt ngang */
+    flex-wrap: nowrap;
+    /* không cho xuống hàng */
+    gap: 6px;
+    /* khoảng cách giữa các nút */
+    overflow-x: auto;
+    /* nếu vẫn quá hẹp, cho trượt ngang */
     padding: 0 8px;
   }
 
   .menu-btns button {
-    flex-shrink: 1; /* cho phép co nhỏ */
-    font-size: 15px; /* thu nhỏ chữ */
-    padding: 4px 8px; /* thu nhỏ nút */
-    min-width: auto; /* bỏ giới hạn chiều rộng */
-    white-space: nowrap; /* chữ không bị xuống dòng */
+    flex-shrink: 1;
+    /* cho phép co nhỏ */
+    font-size: 15px;
+    /* thu nhỏ chữ */
+    padding: 4px 8px;
+    /* thu nhỏ nút */
+    min-width: auto;
+    /* bỏ giới hạn chiều rộng */
+    white-space: nowrap;
+    /* chữ không bị xuống dòng */
   }
 
   .search-bar {
@@ -487,9 +509,12 @@ img, video, iframe {
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: 8px 10px; /* thêm padding bên trong */
-    margin: 0 12px; /* khoảng cách với lề trái/phải */
-    width: calc(100% - 24px); /* trừ phần margin 2 bên để không tràn */
+    padding: 8px 10px;
+    /* thêm padding bên trong */
+    margin: 0 12px;
+    /* khoảng cách với lề trái/phải */
+    width: calc(100% - 24px);
+    /* trừ phần margin 2 bên để không tràn */
     box-sizing: border-box;
   }
 
@@ -508,4 +533,32 @@ img, video, iframe {
     white-space: nowrap;
     box-sizing: border-box;
   }
+}
+
+/* ================================================== THÔNG BÁO BẬT JAVASCRIPT WEB ================================================== */
+/* Ẩn app khi chưa bật JS */
+.no-js #app {
+  display: none;
+}
+
+.no-js .no-js-message {
+  display: block;
+}
+
+/* Khi JS bật thì ngược lại */
+.js #app {
+  display: block;
+}
+
+.js .no-js-message {
+  display: none;
+}
+
+.no-js-message {
+  padding: 2rem;
+  background: #fee;
+  color: #900;
+  text-align: center;
+  font-weight: bold;
+  font-family: sans-serif;
 }
