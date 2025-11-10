@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'font' ;
+    src: url(/T1/assets/font/UTM\ Duepuntozero.ttf);
+}
+
+body {
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'font';
+    letter-spacing: 2px;
+    text-align: center;
+        animation: slideUp 0.6s forwards;
+    animation-delay: 0s;
+}
+
+/* ======================== MAIN ========================== */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 100px;
+    background-color: black;
+}
+
+.logo {
+    width: 100px;
+    list-style: none;
+}
+
+.logo a {
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.menu {
+    padding-top: 25px;
+    list-style: none;
+    display: flex;
+    gap: 100px;
+}
+
+.menu li a {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.menu li a:hover {
+    font-weight: bold;
+}
+
+.language {
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 5px;
+  font-family: 'font';
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.banner img {
+    width: 100%;
+}
+
+/* Fade in reload trang */
+.wapper, h1, header, .menu, .language, .banner img {
+    opacity: 0;
+    transform: translateY(50px);  
+    animation: slideUp 1s forwards;
+    animation-delay: 0.3s;  
+}
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
