@@ -1,0 +1,330 @@
+/* ===============================
+   BIẾN MÀU CHUNG TOÀN TRANG
+   =============================== */
+:root {
+    --bg: #0b1220;
+    /* Màu nền chính */
+    --danger: #ff6b6b;
+    /* Màu đỏ cảnh báo */
+    --muted: #9aa7bd;
+    /* Màu chữ nhạt */
+    user-select: none;
+}
+
+/* =============================== RESET + FONT CHUNG =============================== */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
+    padding: 0;
+    overflow: hidden;
+    /* tránh scroll */
+    height: 100%;
+}
+
+/* =============================== NỀN TOÀN TRANG (HIỆU ỨNG GRADIENT) =============================== */
+body {
+    background:
+        linear-gradient(180deg, #071025 0%, var(--bg) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e6eef8;
+    /* Màu chữ chính */
+}
+
+/* =============================== KHUNG CHÍNH CHỨA GAME + SIDEBAR =============================== */
+.wrap {
+    width: 1000px;
+    max-width: 96vw;
+    height: 640px;
+    max-height: 86vh;
+    display: flex;
+    gap: 16px;
+    /* Khoảng cách giữa game và sidebar */
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #fff;
+    z-index: 1000;
+    /* đảm bảo nằm trên tất cả */
+}
+
+.tank-options {
+    display: flex;
+    gap: 20px;
+}
+
+.tank-option {
+    cursor: pointer;
+    text-align: center;
+}
+
+.tank-option img {
+    width: 230px;
+    height: 230px;
+    transition: transform 0.3s ease;
+}
+
+.tank-option img:hover {
+    transform: scale(1.2);
+}
+
+/* =============================== CARD GAME CHỨA CANVAS =============================== */
+.game-card {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.02);
+    /* Panel trong suốt nhẹ */
+    border-radius: 14px;
+    padding: 12px;
+    box-shadow: 0 0 10px black;
+    /* Đổ bóng */
+}
+
+/* =============================== KHUNG HIỂN THỊ GAME (CANVAS) =============================== */
+canvas {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
+    /* căn giữa */
+    border-radius: 8px;
+}
+
+canvas#game {
+    display: block;
+    /* loại bỏ khoảng cách dưới canvas */
+    position: relative;
+    /* hoặc relative */
+    top: 0;
+    left: 0;
+}
+
+/* =============================== TIÊU ĐỀ + PANEL =============================== */
+h1 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.panel {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* Mỗi dòng thống kê (score / hp) */
+.stat {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* =============================== BUTTON =============================== */
+.btn {
+    padding: 8px 12px;
+    background: linear-gradient(180deg, var(--accent), #ff9d45);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: yellow;
+    font-weight: 600;
+}
+
+/* =============================== CHỮ NHỎ + CHỮ NHẠT + GHI CHÚ =============================== */
+.small {
+    font-size: 13px;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.legend {
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+/* =============================== THANH METER (HP / SCORE) =============================== */
+.meter {
+    height: 10px;
+    background: #08121b;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 8px 0;
+}
+
+/* Phần thanh màu chạy bên trong meter */
+.meter>b {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #ffd18b);
+    width: 1%;
+    /* Sẽ được JS tăng giảm */
+}
+
+/* =============================== HUD TRONG GAME (GÓC TRÊN TRÁI) =============================== */
+#hud {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    font-size: 13px;
+    color: #a6c0d8;
+}
+
+/* =============================== MÀN HÌNH CHẾT (OVERLAY GAME OVER) =============================== */
+.dead-overlay {
+    display: none;
+    /* Ẩn mặc định */
+    position: absolute;
+    inset: 0;
+    /* Bao phủ toàn bộ canvas */
+    background: rgba(0, 0, 0, 0.74);
+    border-radius: 14px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    color: #fff;
+}
+
+/* =============================== RESPONSIVE: MÀN HÌNH NHỎ =============================== */
+@media (max-width:880px) {
+    .wrap {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+}
+
+/* ================================== HUD DƯỚI (giữa màn hình) ================================== */
+#bottom-hud {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ================================== THANH MÁU NHỎ (bên trái skill) ================================== */
+.hp-small {
+    position: relative;
+    width: 120px;
+    height: 18px;
+    bottom: -15px;
+    background: #2a0606;
+    border-radius: 6px;
+    border: 1px solid #000;
+    overflow: hidden;
+    box-shadow: 0 0 4px #000;
+}
+
+.hp-small-fill {
+    height: 100%;
+    width: 100%;
+    /* JS chỉnh */
+    background: linear-gradient(90deg, #ff3b3b, #ff9090);
+}
+
+/* Số HP hiển thị trong thanh */
+.hp-small-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 4px #000;
+}
+
+/* ================================== SKILL BAR ================================== */
+.skill-bar {
+    display: flex;
+    gap: 6px;
+}
+
+.skill-slot {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    border-radius: 6px;
+    background: #1a2330;
+    overflow: hidden;
+    box-shadow: 0 0 1px #000 inset;
+}
+
+
+/* ẩn chữ key */
+.skill-slot.no-key .skill-key {
+  display: none;
+}
+
+.skill-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Cooldown */
+.cd {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    display: none;
+}
+
+.skill-slot.disabled {
+    filter: grayscale(70%);
+    opacity: 0.5;
+}
+
+.skill-key {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 2px #000;
+    pointer-events: none; /* không che chuột */
+}
+
+
+/* ======================================= CREDIT ==================================== */
+#credit {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    color: #ffffffaa;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    pointer-events: none;
+    user-select: none;
+}

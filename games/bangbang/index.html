@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>BangBang tuổi thơ</title>
+    <link href="src/assets/pictures/logo/bangbang.png" rel="icon">
+    <!-- File CSS -->
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/infoTank.css">
+</head>
+
+<body>
+    <div id="tank-select" class="overlay">
+        <h2>Chọn Tank</h2>
+        <div class="tank-options">
+            <div class="tank-option" data-tank="kaneki">
+                <img src="src/assets/pictures/tanks/tankdautien/skin/kaneki_ss.png" alt="Kaneki">
+                <p>Kaneki Ken</p>
+            </div>
+            <div class="tank-option" data-tank="dieuthuyen">
+                <img src="src/assets/pictures/tanks/tankthu2/skin/dieuthuyen_sss.png" alt="Điêu Thuyền">
+                <p>Điêu Thuyền</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================ KHUNG CHÍNH CHỨA GAME + HUD ============================ -->
+    <div class="wrap" role="application">
+        <!-- Khung game ở giữa (canvas + HUD + overlay chết) -->
+        <div class="game-card" style="position:relative;">
+
+            <!-- Canvas vẽ game — xe, đạn, enemy... -->
+            <canvas id="game" width="1280" height="800"></canvas>
+
+            <!-- HUD hiển thị điểm và máu ngay trên canvas -->
+            <div id="hud">
+                <div>Score: <span id="score">0</span></div>
+            </div>
+
+            <!-- Màn hình khi chết — hiện Score + nút chơi lại -->
+            <div id="overlay" class="dead-overlay">
+                <h2 id="overlay-title">Game Over</h2>
+                <div class="small muted" id="final-score">Score: 0</div>
+                <button class="btn" id="restart">Chơi lại</button>
+                <div class="legend muted">WASD để di chuyển • Click để bắn</div>
+            </div>
+
+            <!-- HP + skill display -->
+            <div id="bottom-hud">
+                <!-- THANH MÁU -->
+                <div class="hp-small">
+                    <div class="hp-small-fill" id="hp-small-fill"></div>
+                    <span class="hp-small-text" id="hp-small-text">100/100</span>
+                </div>
+
+                <!-- THANH KỸ NĂNG -->
+                <div class="skill-bar">
+                    <div class="skill-slot">
+                        <img src="src/img/skill1.png" class="skill-icon">
+                        <span class="cd" id="cd1">0</span>
+                        <span class="skill-key">R</span>
+                    </div>
+
+                    <div class="skill-slot">
+                        <img src="src/img/skill2.png" class="skill-icon">
+                        <span class="cd" id="cd2">0</span>
+                        <span class="skill-key">E</span>
+                    </div>
+
+                    <div class="skill-slot">
+                        <img src="src/img/skill3.png" class="skill-icon">
+                        <span class="cd" id="cd3">0</span>
+                        <span class="skill-key">SPACE</span>
+                    </div>
+
+                    <div class="skill-slot">
+                        <img src="src/img/skill4.png" class="skill-icon">
+                        <span class="cd" id="cd4">0</span>
+                        <span class="skill-key">Q</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="credit">Made by Kaitouu</div>
+    </div>
+
+</body>
+<!-- Javascript -->
+<script src="src/js/GameScene.js"></script>
+<script src="src/js/1307.js"></script>
+<script src="src/js/infoTank.js"></script>
+
+</html>
